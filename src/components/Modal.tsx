@@ -70,8 +70,6 @@ function Modal({ address }: Props) {
             className="divide-y-2 divide-black/20"
             onSubmit={handleSubmit(onSubmit)}>
             {fields.map((field, index) => {
-              const leader =
-                GROUP_OPTIONS.find((opt) => opt.id === field.groupId)?.leader ?? "없음";
               return (
                 <div key={field.id} className="flex flex-col gap-4 py-4">
                   <div className="flex items-center">
