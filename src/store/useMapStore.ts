@@ -129,9 +129,8 @@ export const useMapStore = create<MapStore>((set, get) => ({
 
     const bulkPayload = updatedAddresses.map((item) => ({
       id: item.id,
-      address: item.address,
       group_id: item.groupId,
-      note: item.note,
+      visit_day: item.visitDay,
     }));
 
     try {
