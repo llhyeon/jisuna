@@ -3,8 +3,15 @@ import type { ComponentProps } from "react";
 interface Props extends ComponentProps<"select"> {
   label: string;
   options: {
+    id: string | number;
     label: string | number;
-    value: string | number;
+    leader?: string | null;
+    color?: {
+      bg: string;
+      border: string;
+      text: string;
+    };
+    value?: string | number;
   }[];
 }
 
@@ -16,7 +23,7 @@ function UserDropdown({ label, options, ...props }: Props) {
       </label>
       <select className="flex-1 p-2 border rounded-sm bg-white" {...props}>
         {options.map((opt) => (
-          <option key={opt.label} value={opt.value}>
+          <option key={opt.label} value={opt.id}>
             {opt.label}
           </option>
         ))}
