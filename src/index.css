@@ -21,6 +21,10 @@
     @apply bg-background text-foreground;
   }
 
+  #__react-kakao-maps-sdk___Map svg {
+    pointer-events: none;
+  }
+
   .app-container {
     @apply h-screen w-full relative overflow-hidden bg-background text-foreground;
   }
