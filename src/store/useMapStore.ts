@@ -81,7 +81,7 @@ export const useMapStore = create<MapStore>((set, get) => ({
 
           set((state) => ({
             addresses: state.addresses.map((addr) =>
-              addr.groupId === updateRow.groupId ? { ...addr, ...updateRow } : addr,
+              addr.id === updateRow.id ? { ...addr, ...updateRow } : addr,
             ),
           }));
 
