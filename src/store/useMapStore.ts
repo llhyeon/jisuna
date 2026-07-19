@@ -129,14 +129,13 @@ export const useMapStore = create<MapStore>((set, get) => ({
 
     const bulkPayload = updatedAddresses.map((item) => ({
       id: item.id,
+      address: item.address,
       group_id: item.groupId,
       visit_day: item.visitDay,
     }));
 
     try {
-      await supabase.from("address_point").upsert(bulkPayload).throwOnError();
-
-      console.log(` ${bulkPayload.length}건 데이터 업데이트 완료`);
+      await supabase.from("address_point").upsert(bulkPayload).throwOnError().select();
     } catch (error) {
       set({ addresses: prevAddresses });
 
