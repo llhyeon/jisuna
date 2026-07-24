@@ -11,7 +11,6 @@ interface Props {
 
 export function KanbanColumn({ groupIdx, items }: Props) {
   const columnId = `group-${groupIdx}`;
-  const groupName = groupIdx === 0 ? "미배정" : `${groupIdx}조`;
 
   const targetOptions = GROUP_OPTIONS[groupIdx];
 

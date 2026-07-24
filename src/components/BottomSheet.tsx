@@ -5,8 +5,6 @@ import { DndContext, PointerSensor, useSensor, useSensors } from "@dnd-kit/core"
 import { useState } from "react";
 import { Drawer } from "vaul";
 
-const GRUOP_INDEX = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-
 function BottomSheet() {
   const [activeSnapPoint, setActiveSnapPoint] = useState<string | number | null>("60px");
   const addresses = useMapStore((s) => s.addresses);
