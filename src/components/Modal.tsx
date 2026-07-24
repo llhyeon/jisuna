@@ -83,6 +83,10 @@ function Modal({ address }: Props) {
                     <span className="font-bold min-w-15">주소</span>
                     <p className="text-gray-700">{field.address}</p>
                   </div>
+                  <div className="flex items-center">
+                    <span className="font-bold min-w-15">연락처</span>
+                    <p className="text-gray-700">{field.phoneNumber}</p>
+                  </div>
                   <UserDropdown
                     label="그룹"
                     options={GROUP_OPTIONS}
