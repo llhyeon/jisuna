@@ -6,11 +6,13 @@ interface Props extends ComponentProps<"select"> {
     id: string | number;
     label: string | number;
     leader?: string | null;
-    color?: {
-      bg: string;
-      border: string;
-      text: string;
-    };
+    color?:
+      | {
+          bg: string;
+          border: string;
+          text: string;
+        }
+      | string;
     value?: string | number;
   }[];
 }
