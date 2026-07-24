@@ -7,7 +7,7 @@ interface Props {
 }
 
 export function SortableCard({ address }: Props) {
-  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
+  const { setNodeRef, transform, transition, isDragging } = useSortable({
     id: address.id,
   });
 
@@ -27,15 +27,6 @@ export function SortableCard({ address }: Props) {
         <h4 className="font-bold text-sm">{address.householder}</h4>
         {/* 툴팁이나 상세 정보를 위한 여백 */}
         <p className="text-xs text-gray-400 mt-1 line-clamp-2 leading-relaxed">{address.address}</p>
-      </div>
-      <div
-        {...attributes}
-        {...listeners}
-        className="flex flex-col gap-1 shrink-0"
-        aria-label="카드 이동 손잡이">
-        <div className="w-4 bg-gray-200 h-0.5"></div>
-        <div className="w-4 bg-gray-200 h-0.5"></div>
-        <div className="w-4 bg-gray-200 h-0.5"></div>
       </div>
     </div>
   );

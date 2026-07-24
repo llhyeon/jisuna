@@ -1,3 +1,4 @@
+import BottomSheet from "@/components/BottomSheet";
 import KakaoMap from "@/components/KakaoMap";
 import MenuBar from "@/components/MenuBar";
 import Modal from "@/components/Modal";
@@ -39,7 +40,7 @@ function App() {
       <SplashLogo hasShow={isSplashShow || isDataLoading} />
       <KakaoMap onMapLoad={() => setIsSplahShow(false)} />
       {isModalOpen && selectedAddress && <Modal address={selectedAddress} />}
-      {/* <BottomSheet /> */}
+      <BottomSheet />
       <Toaster position="top-center" />
     </main>
   );

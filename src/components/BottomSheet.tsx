@@ -1,4 +1,5 @@
 import { KanbanColumn } from "@/components/KanbanColumn";
+import { GROUP_OPTIONS } from "@/data/constants";
 import { useMapStore } from "@/store/useMapStore";
 import { DndContext, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
 import { useState } from "react";
@@ -38,9 +39,9 @@ function BottomSheet() {
             className="flex-1 min-h-0 w-full overflow-x-auto overflow-y-auto bg-gray-100 px-4 py-4">
             <DndContext sensors={sensors}>
               <div className="flex gap-4 h-full">
-                {GRUOP_INDEX.map((gIndex) => {
-                  const targetAddress = addresses.filter((addr) => addr.groupId === gIndex);
-                  return <KanbanColumn key={gIndex} groupIdx={gIndex} items={targetAddress} />;
+                {GROUP_OPTIONS.map((group) => {
+                  const targetAddress = addresses.filter((addr) => addr.groupId === group.id);
+                  return <KanbanColumn key={group.id} groupIdx={group.id} items={targetAddress} />;
                 })}
               </div>
             </DndContext>

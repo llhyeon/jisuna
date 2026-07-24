@@ -1,3 +1,4 @@
+import { GROUP_OPTIONS } from "@/data/constants";
 import { supabase } from "@/lib/supabase";
 import type { AddressPoint } from "@/schemas/addressSchema";
 import dataKeyFormatter from "@/utils/dataKeyFormatter";
@@ -76,8 +77,11 @@ export const useMapStore = create<MapStore>((set, get) => ({
           table: "address_point",
         },
         (payload) => {
-          const row = payload.new;
-          const updateRow = dataKeyFormatter(row) as AddressPoint;
+          const oldFormattedRow = dataKeyFormatter(payload.old) as AddressPoint;
+          const updateRow = dataKeyFormatter(payload.new) as AddressPoint;
+          const groupOption = GROUP_OPTIONS.find((opt) => opt.id === updateRow.groupId);
+
+          if (!groupOption) return;
 
           set((state) => ({
             addresses: state.addresses.map((addr) =>
@@ -85,8 +89,11 @@ export const useMapStore = create<MapStore>((set, get) => ({
             ),
           }));
 
+          const prevGroup = GROUP_OPTIONS[oldFormattedRow.groupId];
+          const newGroup = GROUP_OPTIONS[updateRow.groupId];
+
           toast.success(
-            `${updateRow.groupId ?? "미배정"}조: ${updateRow.householder} 가구 정보 변경`,
+            `${updateRow.householder} 가구 정보 변경\n${prevGroup.label}=>${newGroup.label}`,
           );
         },
       )
