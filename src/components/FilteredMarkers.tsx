@@ -5,17 +5,10 @@ import { useMapStore } from "@/store/useMapStore";
 function FilteredMarkers() {
   const addresses = useMapStore((s) => s.addresses);
   const visitDay = useMapStore((s) => s.visitDay);
-  const searchText = useMapStore((s) => s.searchText);
-
-  const normalizedSearchText = searchText.trim().toLowerCase();
 
   const addressGroups = Object.values(
     addresses
-      .filter(
-        (addr) =>
-          visitDay.includes(addr.visitDay) &&
-          addr.householder.toLowerCase().includes(normalizedSearchText),
-      )
+      .filter((addr) => visitDay.includes(addr.visitDay))
       .reduce(
         (acc, cur) => {
           const key = `${cur.lat.toFixed(6)}_${cur.lng.toFixed(6)}`;

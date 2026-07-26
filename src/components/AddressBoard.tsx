@@ -23,6 +23,7 @@ function AddressBoard() {
           const targetOptions = GROUP_OPTIONS[group.id];
           return (
             <div
+              key={group.id}
               className={`flex min-w-80 max-w-80 flex-col rounded-xl border-t-4 bg-gray-50 p-3 transition-colors
                 ${targetOptions.color.border}`}>
               <div className="mb-4 flex items-center justify-between px-1">

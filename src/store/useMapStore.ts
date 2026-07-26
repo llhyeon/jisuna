@@ -9,6 +9,9 @@ import { create } from "zustand";
 type VisitDay = 0 | 1 | 2;
 
 interface MapStore {
+  kakaoMap: kakao.maps.Map | null;
+  setKakaoMap: (map: kakao.maps.Map) => void;
+
   addresses: AddressPoint[];
   initAddressesData: () => void;
   isDataLoading: boolean;
@@ -17,10 +20,6 @@ interface MapStore {
   realtimeChannel: RealtimeChannel | null;
   subscribeRealtime: () => void;
   unsubscribeRealtim: () => void;
-
-  // Key in search
-  searchText: string;
-  setSearchText: (searchText: string) => void;
 
   selectedAddress: AddressPoint[];
 
@@ -38,6 +37,9 @@ interface MapStore {
 }
 
 export const useMapStore = create<MapStore>((set, get) => ({
+  kakaoMap: null,
+  setKakaoMap: (map: kakao.maps.Map) => set({ kakaoMap: map }),
+
   addresses: [],
   initAddressesData: async () => {
     try {
@@ -107,11 +109,6 @@ export const useMapStore = create<MapStore>((set, get) => ({
       supabase.removeChannel(channel);
       set({ realtimeChannel: null });
     }
-  },
-
-  searchText: "",
-  setSearchText: (searchText: string) => {
-    return set({ searchText });
   },
 
   selectedAddress: [],
