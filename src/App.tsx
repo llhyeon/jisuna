@@ -40,7 +40,6 @@ function App() {
       <SplashLogo hasShow={isSplashShow || isDataLoading} />
       <KakaoMap onMapLoad={() => setIsSplahShow(false)} />
       {isModalOpen && selectedAddress && <Modal address={selectedAddress} />}
-      {/* <BottomSheet /> */}
       <Toaster position="top-center" />
       <AddressBoard />
     </main>
