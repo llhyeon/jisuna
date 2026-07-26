@@ -1,31 +1,16 @@
 import { VISIT_DAY_OPTIONS } from "@/data/constants";
 import type { AddressPoint } from "@/schemas/addressSchema";
-import { useSortable } from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
 
 interface Props {
   address: AddressPoint;
 }
 
 export function SortableCard({ address }: Props) {
-  const { setNodeRef, transform, transition, isDragging } = useSortable({
-    id: address.id,
-  });
-
   const visitDayOption = VISIT_DAY_OPTIONS[address.visitDay];
-
-  const style = {
-    transform: CSS.Transform.toString(transform),
-    transition,
-    opacity: isDragging ? 0.5 : 1, // 드래그 중일 때는 반투명하게
-  };
 
   return (
     <div
-      ref={setNodeRef}
-      style={style}
-      className={`flex w-full items-center justify-between p-3 mb-2 bg-white rounded-lg shadow-sm border border-gray-100 cursor-grab active:cursor-grabbing select-none touch-none
-        ${isDragging ? "ring-2 ring-blue-400 scale-105" : ""}`}>
+      className={`flex w-full items-center justify-between p-3 mb-2 bg-white rounded-lg shadow-sm border border-gray-100 cursor-grab active:cursor-grabbing select-none touch-none`}>
       <div className="flex-1">
         <div className="flex items-center">
           <h4 className="font-bold text-sm">{address.householder} </h4>

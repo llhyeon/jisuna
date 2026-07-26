@@ -87,6 +87,14 @@ function Modal({ address }: Props) {
                     <span className="font-bold min-w-15">연락처</span>
                     <p className="text-gray-700">{field.phoneNumber}</p>
                   </div>
+                  <div className="flex items-center">
+                    <span className="min-w-16 font-bold">선풍기</span>
+                    <Checkbox
+                      className="size-6 border border-gray-500"
+                      checked={!!field.needFan}
+                      disabled
+                    />
+                  </div>
                   <UserDropdown
                     label="그룹"
                     options={GROUP_OPTIONS}
@@ -104,14 +112,6 @@ function Modal({ address }: Props) {
                     rows={5}
                     disabled
                   />
-                  <div className="flex items-center">
-                    <span className="min-w-16 font-bold">선풍기</span>
-                    <Checkbox
-                      className="size-6 border border-gray-500"
-                      checked={!!field.needFan}
-                      disabled
-                    />
-                  </div>
                 </div>
               );
             })}

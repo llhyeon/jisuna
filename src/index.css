@@ -66,6 +66,11 @@
   .splash-out {
     animation: fadeOut 0.5s ease-in forwards;
   }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE and 엣지 */
+    scrollbar-width: none; /* 파이어폭스 */
+  }
 }
 
 @theme {
