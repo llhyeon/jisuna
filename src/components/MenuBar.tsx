@@ -43,7 +43,7 @@ function MenuBar() {
 
     const normalizedKeyword = inputKeyword.trim();
 
-    const matchAddress = addresses.find((addr) => addr.householder === normalizedKeyword);
+    const matchAddress = addresses.find((addr) => addr.householder.includes(normalizedKeyword));
     if (!matchAddress) {
       toast.error(`'${normalizedKeyword}' 가구는 없습니다.`);
       return;

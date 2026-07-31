@@ -9,8 +9,7 @@ export function SortableCard({ address }: Props) {
   const visitDayOption = VISIT_DAY_OPTIONS[address.visitDay];
 
   return (
-    <div
-      className={`flex w-full items-center justify-between p-3 mb-2 bg-white rounded-lg shadow-sm border border-gray-100 cursor-grab active:cursor-grabbing select-none touch-none`}>
+    <div className="flex w-full items-center justify-between p-3 mb-2 bg-white rounded-lg shadow-sm border border-gray-100">
       <div className="flex-1">
         <div className="flex items-center">
           <h4 className="font-bold text-sm">{address.householder} </h4>

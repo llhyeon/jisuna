@@ -9,7 +9,7 @@ function AddressBoard() {
 
   const addresses = useMapStore((s) => s.addresses);
   return (
-    <div className="fixed z-50 shadow-lg overflow-scroll scrollbar-hide bottom-0 rounded-t-2xl w-full">
+    <div className="fixed z-50 shadow-lg bottom-0 rounded-t-2xl w-full">
       <button
         className="py-2 w-20 bg-surface white rounded-t-2xl mx-auto flex justify-center"
         onClick={() => setIsOpen((prev) => !prev)}
@@ -24,7 +24,7 @@ function AddressBoard() {
           return (
             <div
               key={group.id}
-              className={`flex min-w-80 max-w-80 flex-col rounded-xl border-t-4 bg-gray-50 p-3 transition-colors
+              className={`flex min-w-80 max-w-80 flex-col rounded-xl border-t-4 bg-gray-50 p-3
                 ${targetOptions.color.border}`}>
               <div className="mb-4 flex items-center justify-between px-1">
                 <h3 className="font-extrabold text-gray-700">{targetOptions.label}</h3>
