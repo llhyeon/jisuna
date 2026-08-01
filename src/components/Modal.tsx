@@ -24,7 +24,8 @@ function Modal({ address }: Props) {
     register,
     handleSubmit,
     control,
-    formState: { isDirty, dirtyFields },
+    // formState: { isDirty, dirtyFields },
+    formState: { dirtyFields },
   } = useForm<FormValues>({
     defaultValues: {
       items: address,
