@@ -118,15 +118,15 @@ function Modal({ address }: Props) {
           </form>
         </CardContent>
         <CardFooter className="flex">
-          <Button
+          {/* <Button
             className={`flex-1 ${!isDirty ? "cursor-not-allowed" : "cursor-pointer"}`}
             disabled={!isDirty}
             type="submit"
             form="detail-address-edit">
             저장
-          </Button>
+          </Button> */}
           <Button className="flex-1" onClick={closeModal}>
-            취소
+            닫기
           </Button>
         </CardFooter>
       </Card>
