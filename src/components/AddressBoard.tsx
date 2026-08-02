@@ -8,6 +8,21 @@ function AddressBoard() {
   const [isOpen, setIsOpen] = useState(false);
 
   const addresses = useMapStore((s) => s.addresses);
+
+  const addressMap = new Map<number, typeof addresses>();
+
+  GROUP_OPTIONS.forEach((opt) => {
+    addressMap.set(opt.id, []);
+  });
+
+  addresses.forEach((addr) => {
+    addressMap.get(addr.groupId)?.push(addr);
+  });
+
+  Array.from(addressMap.values()).forEach((addrMap) => {
+    addrMap.sort((a, b) => a.visitDay - b.visitDay);
+  });
+
   return (
     <div className="fixed z-50 shadow-lg bottom-0 rounded-t-2xl w-full">
       <button
@@ -19,9 +34,8 @@ function AddressBoard() {
       <div
         className={`bg-surface flex gap-4 overflow-auto h-full rounded-t-2xl scrollbar-hide ${isOpen ? "max-h-[80dvh] p-2" : "max-h-0"} transition-[max-height] duration-300 ease-in-out`}>
         {GROUP_OPTIONS.map((group) => {
-          const items = addresses.filter((addr) => addr.groupId === group.id);
-          const daySortedItems = items.sort((a, b) => a.visitDay - b.visitDay);
           const targetOptions = GROUP_OPTIONS[group.id];
+          const items = addressMap.get(group.id) ?? [];
           return (
             <div
               key={group.id}
@@ -36,7 +50,7 @@ function AddressBoard() {
 
               <div className="min-h-0 flex-1 overflow-y-auto overflow-x-hidden pb-4">
                 <div className="flex min-h-full flex-col gap-2">
-                  {daySortedItems.map((addr) => (
+                  {items.map((addr) => (
                     <SortableCard key={addr.id} address={addr} />
                   ))}
                 </div>

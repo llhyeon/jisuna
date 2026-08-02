@@ -8,6 +8,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Separator } from "@/components/ui/separator";
+import { GROUP_OPTIONS } from "@/data/constants";
 import { useMapStore } from "@/store/useMapStore";
 import { Search } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -24,6 +25,11 @@ function MenuBar() {
   const addresses = useMapStore((s) => s.addresses);
   const visitDay = useMapStore((s) => s.visitDay);
   const toggleVisitDay = useMapStore((s) => s.toggleVisitDay);
+  const selectedGroups = useMapStore((s) => s.selectedGroups);
+  const toggleSelectedGroups = useMapStore((s) => s.toggleSelectedGroups);
+  const toggleAllGroups = useMapStore((s) => s.toggleAllGroups);
+
+  const isAllSelected = selectedGroups.length === GROUP_OPTIONS.length - 1;
 
   useEffect(() => {
     if (!serachInputRef.current) return;
@@ -70,22 +76,41 @@ function MenuBar() {
           <PopoverHeader>
             <PopoverTitle>날짜별 보기</PopoverTitle>
           </PopoverHeader>
-          <CheckboxItem
-            label="미배정"
-            checked={visitDay.includes(0)}
-            onCheckedChange={() => toggleVisitDay(0)}
-          />
-          <CheckboxItem
-            label="8월 22일"
-            checked={visitDay.includes(1)}
-            onCheckedChange={() => toggleVisitDay(1)}
-          />
-          <CheckboxItem
-            label="8월 29일"
-            checked={visitDay.includes(2)}
-            onCheckedChange={() => toggleVisitDay(2)}
-          />
+          <div className="space-y-2">
+            <CheckboxItem
+              label="미배정"
+              checked={visitDay.includes(0)}
+              onCheckedChange={() => toggleVisitDay(0)}
+            />
+            <CheckboxItem
+              label="8월 22일"
+              checked={visitDay.includes(1)}
+              onCheckedChange={() => toggleVisitDay(1)}
+            />
+            <CheckboxItem
+              label="8월 29일"
+              checked={visitDay.includes(2)}
+              onCheckedChange={() => toggleVisitDay(2)}
+            />
+          </div>
           <Separator />
+          <PopoverHeader>
+            <PopoverTitle>조별 보기</PopoverTitle>
+          </PopoverHeader>
+          <div className="space-y-2">
+            <CheckboxItem
+              label="전체보기"
+              checked={isAllSelected}
+              onCheckedChange={toggleAllGroups}
+            />
+            {GROUP_OPTIONS.slice(1).map((opt) => (
+              <CheckboxItem
+                label={opt.label}
+                checked={selectedGroups.includes(opt.id)}
+                onCheckedChange={() => toggleSelectedGroups(opt.id)}
+              />
+            ))}
+          </div>
         </PopoverContent>
       </Popover>
       <form onSubmit={handleSearchAddress}>

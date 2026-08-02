@@ -5,10 +5,12 @@ import { useMapStore } from "@/store/useMapStore";
 function FilteredMarkers() {
   const addresses = useMapStore((s) => s.addresses);
   const visitDay = useMapStore((s) => s.visitDay);
+  const selectedGroups = useMapStore((s) => s.selectedGroups);
 
   const addressGroups = Object.values(
     addresses
       .filter((addr) => visitDay.includes(addr.visitDay))
+      .filter((addr) => selectedGroups.includes(addr.groupId))
       .reduce(
         (acc, cur) => {
           const key = `${cur.lat.toFixed(6)}_${cur.lng.toFixed(6)}`;

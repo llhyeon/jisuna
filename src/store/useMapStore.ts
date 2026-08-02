@@ -1,4 +1,4 @@
-import { GROUP_OPTIONS } from "@/data/constants";
+import { ALL_IDS, GROUP_OPTIONS } from "@/data/constants";
 import { supabase } from "@/lib/supabase";
 import type { AddressPoint } from "@/schemas/addressSchema";
 import dataKeyFormatter from "@/utils/dataKeyFormatter";
@@ -31,6 +31,10 @@ interface MapStore {
 
   visitDay: VisitDay[];
   toggleVisitDay: (visitDay: VisitDay) => void;
+
+  selectedGroups: number[];
+  toggleSelectedGroups: (groupId: number) => void;
+  toggleAllGroups: () => void;
 
   groups: AddressPoint[][];
   setGroups: (groups: AddressPoint[][]) => void;
@@ -158,6 +162,22 @@ export const useMapStore = create<MapStore>((set, get) => ({
 
       return {
         visitDay: updatedVisitDay,
+      };
+    }),
+
+  selectedGroups: ALL_IDS,
+  toggleSelectedGroups: (groupId: number) =>
+    set((state) => ({
+      selectedGroups: state.selectedGroups.includes(groupId)
+        ? state.selectedGroups.filter((id) => id !== groupId)
+        : [...state.selectedGroups, groupId],
+    })),
+  toggleAllGroups: () =>
+    set((state) => {
+      const isAllSelected = ALL_IDS.every((id) => state.selectedGroups.includes(id));
+
+      return {
+        selectedGroups: isAllSelected ? [] : ALL_IDS,
       };
     }),
 

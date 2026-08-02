@@ -61,6 +61,8 @@ export const GROUP_OPTIONS = [
   },
 ];
 
+export const ALL_IDS = GROUP_OPTIONS.filter((opt) => opt.id !== 0).map((group) => group.id);
+
 export const VISIT_DAY_OPTIONS = [
   { id: 0, label: "지정 필요", value: 0, color: "text-gray-600" },
   { id: 1, label: "8월 22일", value: 1, color: "text-orange-800" },
